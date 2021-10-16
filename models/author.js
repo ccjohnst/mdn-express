@@ -44,6 +44,10 @@ AuthorSchema.virtual("date_of_death_formatted").get(function () {
 		? DateTime.fromJSDate(this.date_of_death).toLocaleString(DateTime.DATE_MED)
 		: "";
 });
+
+AuthorSchema.virtual("lifespan").get(function () {
+	return this.date_of_birth_formatted + " - " + this.date_of_death_formatted;
+});
 // Virtual for author's URL
 AuthorSchema.virtual("url").get(function () {
 	return "/catalog/author/" + this._id;
